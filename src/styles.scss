@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'ngx-toastr/toastr';
+
+.list {
+  border-radius: 5px;
+  border: solid 2px rgb(3, 68, 128);
+  transition: box-shadow 0.5s;
+  overflow: hidden;
+}
+
+.list:hover {
+  box-shadow: 0 0 10px rgb(3, 88, 169);
+  background-color: a;
+}
+
+.comments-section .list-group-item {
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+.comments-section .list-group-item:hover {
+  background-color: #e8f0fe; // لون خلفية خفيف عند hover
+  transform: translateX(5px); // حركة بسيطة لليمين
+}

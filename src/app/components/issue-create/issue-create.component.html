@@ -1,0 +1,49 @@
+
+<div class="container mt-4">
+  <h2 class="mb-3">Create New Post</h2>
+
+  <form [formGroup]="newPost" (ngSubmit)="creatPost()" class="border p-3 rounded">
+
+    <!-- Title -->
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        id="title"
+        class="form-control"
+        formControlName="title"
+        placeholder="Enter post title"
+      />
+      @if (newPost.get('title')?.invalid && newPost.get('title')?.touched) {
+        <div class="text-danger mt-1">
+          Title is required (min 3 characters).
+        </div>
+      }
+    </div>
+
+    <!-- Body -->
+    <div class="mb-3">
+      <label for="body" class="form-label">Body</label>
+      <textarea
+        id="body"
+        class="form-control"
+        rows="5"
+        formControlName="body"
+        placeholder="Enter post body"
+      ></textarea>
+      @if (newPost.get('body')?.invalid && newPost.get('body')?.touched) {
+        <div class="text-danger mt-1">
+          Body is required.
+        </div>
+      }
+    </div>
+
+    <!-- Submit -->
+    <button 
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="newPost.invalid">
+      Create Post
+    </button>
+  </form>
+</div>
