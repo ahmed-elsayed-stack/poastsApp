@@ -22,34 +22,35 @@
 
 
 <!-- ====== Posts Section ====== -->
-    <input [(ngModel)]="text" type="search" placeholder="search By Title...." class="form-control my-3 border border-1 border-success w-50 mx-auto" >
+    <input [(ngModel)]="text" type="search" aria-label="Search Posts" placeholder="search By Title...." class="form-control my-3 border border-1 border-success w-50 mx-auto" >
+
 
 
 <section class="container my-4">
-  <div class="row g-3">
-    @for (post of posts().slice(0, 50)|search:text ; track $index) {
-      <div class="col-12">
-        <div class="card shadow-sm border-0 rounded-3 h-100">
-          <div class="card-body">
-            <h5 class="card-title text-primary fw-bold">{{ post.title }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">
-              <i class="fa-solid fa-user me-1"></i> User: {{ post.userId }} |
-              <i class="fa-solid fa-hashtag me-1"></i> ID: {{ post.id }}
-            </h6>
-            <p class="card-text mt-3">{{ post.body }}</p>
-          </div>
-          <div class="card-footer bg-transparent border-0 text-end">
-          <button
-              class="btn btn-sm btn-outline-info"
-              [routerLink]="['/issues', post.id]"
-              aria-label="View Details"
-              title="View Details">
-              <i class="fa-solid fa-eye"></i>
-           View Details</button>
-
+  @if (posts$ | async; as posts) {
+    <div class="row g-3">
+      @for (post of posts.slice(0, 50) | search:text; track post.id) {
+        <div class="col-12">
+          <div class="card shadow-sm border-0 rounded-3 h-100">
+            <div class="card-body">
+              <h5 class="card-title text-primary fw-bold">{{ post.title }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                <i class="fa-solid fa-user me-1"></i> User: {{ post.userId }} |
+                <i class="fa-solid fa-hashtag me-1"></i> ID: {{ post.id }}
+              </h6>
+              <p class="card-text mt-3">{{ post.body }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 text-end">
+              <button class="btn btn-sm btn-outline-info"
+                      [routerLink]="['/issues', post.id]"
+                      aria-label="View Details"
+                      title="View Details">
+                <i class="fa-solid fa-eye"></i> View Details
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    }
-  </div>
+      }
+    </div>
+  }
 </section>

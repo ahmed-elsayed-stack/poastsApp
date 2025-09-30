@@ -30,6 +30,7 @@ creatPost() {
     this._ListsService.getCreatPost(this.newPost.value).subscribe({
       next: (res) => {
         console.log( res);
+       
 
         // ✅ إظهار Toastr Success
         this._ToastrService.success('Post created successfully!', 'Success');
